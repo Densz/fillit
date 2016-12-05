@@ -6,12 +6,11 @@
 /*   By: dzheng <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 16:01:00 by dzheng            #+#    #+#             */
-/*   Updated: 2016/12/05 12:44:18 by dzheng           ###   ########.fr       */
+/*   Updated: 2016/12/05 13:52:36 by dzheng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "verif_grid.c"
+#include "../libft.h"
 
 #include <sys/types.h>
 #include <sys/stat.h>

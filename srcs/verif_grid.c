@@ -6,11 +6,11 @@
 /*   By: dzheng <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 11:30:44 by dzheng            #+#    #+#             */
-/*   Updated: 2016/12/05 12:39:17 by dzheng           ###   ########.fr       */
+/*   Updated: 2016/12/05 13:38:59 by dzheng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
 int     check_c(char *str, char c)
 {
