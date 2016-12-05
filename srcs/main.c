@@ -6,7 +6,7 @@
 /*   By: dzheng <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 16:01:00 by dzheng            #+#    #+#             */
-/*   Updated: 2016/12/05 16:16:50 by dzheng           ###   ########.fr       */
+/*   Updated: 2016/12/05 17:41:21 by dzheng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ char	*ft_split_tetri(char *str)
 {
 	size_t i;
 
-	i = 0;
+	i = 20;
 	while (str[i])
 	{
 		if (ft_isspace(str[i]))
 			str[i] = '@';
-		i = i + 20;
+		i = i + 21;
 	}
 	return (str);
 }
