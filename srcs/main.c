@@ -6,7 +6,7 @@
 /*   By: dzheng <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 16:01:00 by dzheng            #+#    #+#             */
-/*   Updated: 2016/12/05 17:41:21 by dzheng           ###   ########.fr       */
+/*   Updated: 2016/12/05 18:53:31 by dzheng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*ft_split_tetri(char *str)
 	return (str);
 }
 
-int		read_file(char *str)
+char  	**read_file(char *str)
 {
 	int fd;
 	int ret;
@@ -46,21 +46,15 @@ int		read_file(char *str)
 	if (fd == -1)
 	{
 		ft_putstr("Open () error");
-		return (0);
 	}
 	ret = read(fd, buf, BUF_SIZE);
 	ft_split_tetri(buf);
 	s = ft_strsplit(buf, '@');
-	if (ft_check_grid(s) == 1)
-		printf("VALID_GRILL");
-	else
-		printf("UNVALID GRILL - TRY AGAIN");
 	if (close(fd) == -1)
 	{
 		ft_putstr("Close() error");
-		return (0);
-	}	
-	return (1);
+	}
+	return (s);
 }
 
 int main(int ac, char *av[])
@@ -69,12 +63,22 @@ int main(int ac, char *av[])
 	int i;
 
 	i = 0;
-	str = NULL;
 	if (ac != 2)
 		ft_putstr("Fais attention Grooos");
 	else
 	{
-		read_file(av[1]);
+		str = read_file(av[1]);
+		if (ft_check_grid(str) == 1)
+		{
+			str = ft_put_letters(str);
+			while (str[i])
+			{
+				printf("Tetrominos %d\n%s\n", i, str[i]);
+				i++;
+			}
+		}
+		else
+			printf("UNVALID GRILL - TRY AGAIN");
 	}
 	return (0);
 }

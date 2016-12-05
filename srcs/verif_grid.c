@@ -6,11 +6,55 @@
 /*   By: dzheng <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 11:30:44 by dzheng            #+#    #+#             */
-/*   Updated: 2016/12/05 17:49:23 by dzheng           ###   ########.fr       */
+/*   Updated: 2016/12/05 19:37:06 by dzheng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
+
+char	**ft_put_letters(char **str)
+{
+	int tetri;
+	int i;
+	char c;
+
+	tetri = 0;
+	c = 65;
+	while (str[tetri])
+	{
+		i = 0;
+		while (str[tetri][i] && c <= 'Z')
+		{
+			if (str[tetri][i] == '#')
+				str[tetri][i] = c;
+			i++;
+		}
+		tetri++;
+		c++;
+	}
+	return (str);
+}
+
+int		check_link(char *str)
+{
+	int i;
+	int count_d;
+
+	i = 0;
+	count_d = 0;
+	while (str[i])
+	{
+		if (str[i] == '#')
+		{
+			if (str[i + 1] == '#' || str[i + 5] == '#' || str[i - 1] == '#' || str[i - 5] == '#')
+			{
+				count_d++;
+			}
+		}
+		i++;
+	}
+	return (count_d);
+}
 
 int     check_c(char *str, char c)
 {
@@ -58,7 +102,8 @@ int     ft_check_grid(char **str)
     while (str[i] != NULL)
     {
         if (check_c(str[i], '.') == 12 && check_c(str[i], '#') == 4 &&
-			(check_end_line(str[i]) == 4 || check_end_line(str[i]) == 3))
+			(check_end_line(str[i]) == 4 || check_end_line(str[i]) == 3) &&
+			check_link(str[i]) == 4)
             i++;
         else
             return (0);
