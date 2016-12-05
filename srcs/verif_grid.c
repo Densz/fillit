@@ -6,7 +6,7 @@
 /*   By: dzheng <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 11:30:44 by dzheng            #+#    #+#             */
-/*   Updated: 2016/12/05 13:38:59 by dzheng           ###   ########.fr       */
+/*   Updated: 2016/12/05 16:12:26 by dzheng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int     ft_check_grid(char **str)
         return (0);
     while (str[i] != NULL)
     {
-        if (check_c(str[i], '.') == 12)
+        if (check_c(str[i], '.') == 12 && check_c(str[i], '#') == 4)
             i++;
         else
             return (0);

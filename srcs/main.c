@@ -6,7 +6,7 @@
 /*   By: dzheng <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 16:01:00 by dzheng            #+#    #+#             */
-/*   Updated: 2016/12/05 13:52:36 by dzheng           ###   ########.fr       */
+/*   Updated: 2016/12/05 16:16:50 by dzheng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int		read_file(char *str)
 	if (ft_check_grid(s) == 1)
 		printf("VALID_GRILL");
 	else
-		printf("PAS ASSEZ DE POINTS");
+		printf("UNVALID GRILL - TRY AGAIN");
 	if (close(fd) == -1)
 	{
 		ft_putstr("Close() error");
