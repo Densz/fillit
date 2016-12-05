@@ -6,7 +6,7 @@
 /*   By: dzheng <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 16:49:40 by dzheng            #+#    #+#             */
-/*   Updated: 2016/12/01 18:48:36 by dzheng           ###   ########.fr       */
+/*   Updated: 2016/12/05 11:33:10 by dzheng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,9 @@ void				ft_swap(int *a, int *b);
 int					ft_isblank(int c);
 char				*ft_strrev(char *str);
 int					ft_ispunct(int c);
+
+//Prototypes pour FILLIT
+int					check_c(char *str, char c);
+int					ft_check_grid(char **str);
 
 #endif

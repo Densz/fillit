@@ -6,11 +6,13 @@
 /*   By: dzheng <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 16:01:00 by dzheng            #+#    #+#             */
-/*   Updated: 2016/12/02 18:49:09 by dzheng           ###   ########.fr       */
+/*   Updated: 2016/12/05 12:44:18 by dzheng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "verif_grid.c"
+
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -18,7 +20,7 @@
 
 #define BUF_SIZE 600
 
-char	*check_tetriminos(char *str)
+char	*ft_split_tetri(char *str)
 {
 	size_t i;
 
@@ -26,7 +28,7 @@ char	*check_tetriminos(char *str)
 	while (str[i])
 	{
 		if (ft_isspace(str[i]))
-			str[i] = 'Z';
+			str[i] = '@';
 		i = i + 20;
 	}
 	return (str);
@@ -48,13 +50,12 @@ int		read_file(char *str)
 		return (0);
 	}
 	ret = read(fd, buf, BUF_SIZE);
-	check_tetriminos(buf);
-	s = ft_strsplit(buf, 'Z');
-	while (s[i] != NULL)
-	{
-		printf("Tetriminos %d\n%s\n", i, s[i]);
-		i++;
-	}
+	ft_split_tetri(buf);
+	s = ft_strsplit(buf, '@');
+	if (ft_check_grid(s) == 1)
+		printf("VALID_GRILL");
+	else
+		printf("PAS ASSEZ DE POINTS");
 	if (close(fd) == -1)
 	{
 		ft_putstr("Close() error");
