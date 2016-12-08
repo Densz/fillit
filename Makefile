@@ -6,7 +6,7 @@
 #    By: dzheng <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/05 13:30:45 by dzheng            #+#    #+#              #
-#    Updated: 2016/12/05 13:58:46 by dzheng           ###   ########.fr        #
+#    Updated: 2016/12/07 10:01:31 by dzheng           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -17,7 +17,9 @@ CC = cc
 FLAGS = -Wall -Wextra -Werror
 PATH_SRC = ./srcs/
 SRC = $(PATH_SRC)main.c \
-	$(PATH_SRC)verif_grid.c
+	$(PATH_SRC)verif_grid.c \
+	$(PATH_SRC)read_file.c \
+	$(PATH_SRC)get_tetrimino.c
 
 #COLORS
 C_GOOD			=	"\033[32m"

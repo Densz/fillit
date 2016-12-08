@@ -6,11 +6,11 @@
 /*   By: dzheng <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 11:30:44 by dzheng            #+#    #+#             */
-/*   Updated: 2016/12/05 19:37:06 by dzheng           ###   ########.fr       */
+/*   Updated: 2016/12/06 17:51:15 by dzheng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../fillit.h"
 
 char	**ft_put_letters(char **str)
 {
@@ -46,10 +46,14 @@ int		check_link(char *str)
 	{
 		if (str[i] == '#')
 		{
-			if (str[i + 1] == '#' || str[i + 5] == '#' || str[i - 1] == '#' || str[i - 5] == '#')
-			{
+			if (str[i + 1] == '#')
 				count_d++;
-			}
+			if (str[i + 5] == '#')
+				count_d++;
+			if (str[i - 1] == '#')
+				count_d++;
+			if(str[i - 5] == '#')
+				count_d++;
 		}
 		i++;
 	}
@@ -103,7 +107,7 @@ int     ft_check_grid(char **str)
     {
         if (check_c(str[i], '.') == 12 && check_c(str[i], '#') == 4 &&
 			(check_end_line(str[i]) == 4 || check_end_line(str[i]) == 3) &&
-			check_link(str[i]) == 4)
+			(check_link(str[i]) == 6 || check_link(str[i]) == 8))
             i++;
         else
             return (0);
