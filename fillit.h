@@ -16,17 +16,18 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
-# include <stdio.h>
 # include "libft/libft.h"
 # include <string.h>
 
+//ATTENTION A SUPPRIMER
+# include <stdio.h>
 typedef struct				s_position
 {
-	char					abc;//the first tetrimino name is A then B C ..
-	char					*tetrimino;//tous les blocks
+	char					abc;
+	char					*tetrimino;
 	int						x[4];
 	int						y[4];
-	struct s_position 	*next;
+	struct s_position 		*next;
 }							t_position;
 
 int                 check_c(char *str, char c);

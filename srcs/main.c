@@ -32,10 +32,10 @@ int main(int ac, char *av[])
 			while (tetriminos != NULL)
 			{
 				next = tetriminos->next;
-				printf("Position x : %i\t", tetriminos->x[2]);
+				printf("Position x : %i\t", tetriminos->x[0]);
 				ft_putstr("\n");
-				printf("Position y : %i\n", tetriminos->y[2]);
-				printf("%s\n", tetriminos->tetrimino);
+				printf("Position y : %i\n", tetriminos->y[0]);
+				printf("Tetriminos %c\n%s\n", tetriminos->abc, tetriminos->tetrimino);
 				tetriminos = next;
 			}
 		}

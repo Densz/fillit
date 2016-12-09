@@ -21,7 +21,7 @@ char    *ft_split_tetri(char *str)
     i = 20;
     while (str[i])
     {
-        if (ft_isspace(str[i]))
+        if (str[i] == '\n')
             str[i] = '@';
         i = i + 21;
     }

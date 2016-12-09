@@ -12,15 +12,15 @@
 
 #include "../fillit.h"
 
-t_position	*ft_get_tetriminos(char **str)
+t_position			*ft_get_tetriminos(char **str)
 {
-	t_position 	*tetrimino;
-	t_position	*ptr;
-	int 			i;
-	int 			j;
-	char 			letter;
+	t_position		*tetrimino;
+	t_position		*ptr;
+	int				i;
+	int				j;
+	char			letter;
 	int				x;
-	int 			y;
+	int				y;
 
 	j = 0;
 	letter = 'A';
