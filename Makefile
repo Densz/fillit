@@ -6,7 +6,7 @@
 #    By: dzheng <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/05 13:30:45 by dzheng            #+#    #+#              #
-#    Updated: 2016/12/07 10:01:31 by dzheng           ###   ########.fr        #
+#    Updated: 2016/12/09 11:39:21 by dzheng           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -19,7 +19,8 @@ PATH_SRC = ./srcs/
 SRC = $(PATH_SRC)main.c \
 	$(PATH_SRC)verif_grid.c \
 	$(PATH_SRC)read_file.c \
-	$(PATH_SRC)get_tetrimino.c
+	$(PATH_SRC)get_tetrimino.c \
+	$(PATH_SRC)solver.c
 
 #COLORS
 C_GOOD			=	"\033[32m"
@@ -30,7 +31,7 @@ SUCCESS			=	$(C_GOOD)SUCCESS$
 all: $(NAME)
 
 $(NAME): 
-		$(CC) $(FLAGS) $(SRC) $(LIB) -o $(NAME)
+		@$(CC) $(SRC) $(LIB) -o $(NAME)
 		@echo "Compiling" [ $(NAME) ] $(SUCCESS)
 clean:
 		/bin/rm -f $(OBJ)

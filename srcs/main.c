@@ -15,11 +15,9 @@
 int main(int ac, char *av[])
 {
 	char 			**str;
-	int 			i;
-	t_position 	*tetriminos;
-	t_position 	*next;
+	t_position 		*tetriminos;
+	char			*resolution;
 
-	i = 65;
 	if (ac != 2)
 		ft_putstr("Error ()");
 	else
@@ -29,15 +27,16 @@ int main(int ac, char *av[])
 		{
 			str = ft_put_letters(str);
 			tetriminos = ft_get_tetriminos(str);
-			while (tetriminos != NULL)
+			resolution = ft_solve(tetriminos);
+			ft_putstr(resolution);
+/*			while (tetriminos != NULL)
 			{
-				next = tetriminos->next;
-				printf("Position x : %i\t", tetriminos->x[0]);
+				printf("Position x : %i\t", tetriminos->x[2]);
 				ft_putstr("\n");
-				printf("Position y : %i\n", tetriminos->y[0]);
+				printf("Position y : %i\n", tetriminos->y[2]);
 				printf("Tetriminos %c\n%s\n", tetriminos->abc, tetriminos->tetrimino);
-				tetriminos = next;
-			}
+				tetriminos = tetriminos->next;
+			}*/
 		}
 		else
 			printf("UNVALID GRILL - TRY AGAIN");

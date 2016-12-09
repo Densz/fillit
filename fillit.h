@@ -21,6 +21,7 @@
 
 //ATTENTION A SUPPRIMER
 # include <stdio.h>
+
 typedef struct				s_position
 {
 	char					abc;
@@ -36,5 +37,7 @@ char                **ft_put_letters(char **str);
 char				*ft_split_tetri(char *str);
 char				**read_file(char *str);
 t_position			*ft_get_tetriminos(char **str);
-
+void				solver(void);
+char				*ft_solve(t_position *tetriminos);
+	
 #endif
