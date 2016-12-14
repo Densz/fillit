@@ -6,12 +6,12 @@
 #    By: dzheng <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/05 13:30:45 by dzheng            #+#    #+#              #
-#    Updated: 2016/12/09 11:39:21 by dzheng           ###   ########.fr        #
+#    Updated: 2016/12/12 19:56:35 by dzheng           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME = fillit
-LIB_PATH = libft
+LIB_PATH = ../libft/
 LIB = $(LIB_PATH)/libft.a
 CC = cc
 FLAGS = -Wall -Wextra -Werror
@@ -31,6 +31,7 @@ SUCCESS			=	$(C_GOOD)SUCCESS$
 all: $(NAME)
 
 $(NAME): 
+		make -C ../libft/
 		@$(CC) $(SRC) $(LIB) -o $(NAME)
 		@echo "Compiling" [ $(NAME) ] $(SUCCESS)
 clean:

@@ -6,17 +6,17 @@
 /*   By: dzheng <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 11:30:44 by dzheng            #+#    #+#             */
-/*   Updated: 2016/12/06 17:51:15 by dzheng           ###   ########.fr       */
+/*   Updated: 2016/12/14 10:38:55 by dzheng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fillit.h"
 
-char	**ft_put_letters(char **str)
+char		**ft_put_letters(char **str)
 {
-	int tetri;
-	int i;
-	char c;
+	int		tetri;
+	int		i;
+	char	c;
 
 	tetri = 0;
 	c = 65;
@@ -35,10 +35,10 @@ char	**ft_put_letters(char **str)
 	return (str);
 }
 
-int		check_link(char *str)
+int			check_link(char *str)
 {
-	int i;
-	int count_d;
+	int		i;
+	int		count_d;
 
 	i = 0;
 	count_d = 0;
@@ -52,7 +52,7 @@ int		check_link(char *str)
 				count_d++;
 			if (str[i - 1] == '#')
 				count_d++;
-			if(str[i - 5] == '#')
+			if (str[i - 5] == '#')
 				count_d++;
 		}
 		i++;
@@ -60,28 +60,28 @@ int		check_link(char *str)
 	return (count_d);
 }
 
-int     check_c(char *str, char c)
+int			check_c(char *str, char c)
 {
-    int i;
-	int len;
+	int		i;
+	int		len;
 
-    i = 0;
+	i = 0;
 	len = 0;
-    if (str == NULL)
-        return (0);
-    while (str[len])
-    {
+	if (str == NULL)
+		return (0);
+	while (str[len])
+	{
 		if (str[len] == c)
 			i++;
 		len++;
-    }
-    return (i);
+	}
+	return (i);
 }
 
-int		check_end_line(char *str)
+int			check_end_line(char *str)
 {
-	int count;
-	int len;
+	int		count;
+	int		len;
 
 	count = 0;
 	len = 4;
@@ -91,28 +91,28 @@ int		check_end_line(char *str)
 	{
 		if (str[len] == '\n')
 			count++;
-		len = len + 5 ;
+		len = len + 5;
 	}
 	return (count);
 }
 
-int     ft_check_grid(char **str)
+int			ft_check_grid(char **str)
 {
-    int i;
+	int		i;
 
-    i = 0;
-    if (str == NULL)
-        return (0);
-    while (str[i] != NULL)
-    {
-        if (check_c(str[i], '.') == 12 && check_c(str[i], '#') == 4 &&
-			(check_end_line(str[i]) == 4 || check_end_line(str[i]) == 3) &&
-			(check_link(str[i]) == 6 || check_link(str[i]) == 8))
-            i++;
-        else
-            return (0);
-    }
-    if (str[i] == NULL)
-        return (1);
-    return (0);
+	i = 0;
+	if (str == NULL)
+		return (0);
+	while (str[i] != NULL)
+	{
+		if (check_c(str[i], '.') == 12 && check_c(str[i], '#') == 4 &&
+				(check_end_line(str[i]) == 4 || check_end_line(str[i]) == 3) &&
+				(check_link(str[i]) == 6 || check_link(str[i]) == 8))
+			i++;
+		else
+			return (0);
+	}
+	if (str[i] == NULL)
+		return (1);
+	return (0);
 }

@@ -1,73 +1,125 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   solver.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dzheng <dzheng@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/12/12 17:44:07 by dzheng            #+#    #+#             */
+/*   Updated: 2016/12/13 14:24:53 by dzheng           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../fillit.h"
 
-char				*ft_empty_grid(unsigned int size)
+char				**ft_empty_grid(char **tab, int max)
 {
-	char			*str;
-	int 			i;
-	int 			j;
-	unsigned int	tmp;
+	int				x;
+	int				y;
 
-	i = 0;
-	j = 0;
-	str = (char*)malloc(sizeof(str) * (((size + 1) * size) + 1));
-	if (str == NULL)
+	y = 0;
+	if (!(tab = (char **)malloc(sizeof(char *) * (max + 1))))
 		return (NULL);
-	while (i < size)
+	while (y < max)
 	{
-		tmp = size;
-		while (tmp--)
+		tab[y] = (char *)malloc(sizeof(char) * (max + 1));
+		x = 0;
+		while (x < max)
 		{
-			str[j] = '.';
-			j++;
+			tab[y][x] = '.';
+			x++;
 		}
-		str[j] = '\n';
-		j++;
-		i++;
+		tab[y][x] = '\0';
+		y++;
 	}
-	str[j] = '\0';
-	return (str);
+	tab[y] = NULL;
+	return (tab);
 }
 
-char				*ft_grid_solver(t_position *tetriminos, char *empty_grid, int size)
+char				**ft_reset_tab(char **tab, t_position tetriminos, int max)
 {
-	t_position		*ptr;
+	int				x;
+	int				y;
+
+	y = 0;
+	while (y < max)
+	{
+		x = 0;
+		while (x < max)
+		{
+			if (tab[y][x] == tetriminos.abc)
+				tab[y][x] = '.';
+			x++;
+		}
+		y++;
+	}
+	return (tab);
+}
+
+char				**ft_fill_tab(char **tab, t_position tetriminos, int max)
+{
+	int				x;
+	int				y;
 	int				i;
 
 	i = 0;
-	ptr = tetriminos;
-	while (ptr != NULL)
+	y = 0;
+	while (y < max)
 	{
-		i = 0;
-		while (empty_grid[i])
+		x = 0;
+		while (x < max)
 		{
-			if ((i % (size + 1) == ptr->x[0] && (i / (size + 1) == ptr->y[0]) && empty_grid[i] == '.'))
-				empty_grid[i] = ptr->abc;
-			if ((i % (size + 1) == ptr->x[1] && (i / (size + 1) == ptr->y[1]) && empty_grid[i] == '.'))
-				empty_grid[i] = ptr->abc;
-			if ((i % (size + 1) == ptr->x[2] && (i / (size + 1) == ptr->y[2]) && empty_grid[i] == '.'))
-				empty_grid[i] = ptr->abc;
-			if ((i % (size + 1) == ptr->x[3] && (i / (size + 1) == ptr->y[3]) && empty_grid[i] == '.'))
-				empty_grid[i] = ptr->abc;
-			i++;
+			if (tetriminos.x[i] == x && tetriminos.y[i] == y)
+			{
+				tab[y][x] = tetriminos.abc;
+				i++;
+			}
+			x++;
 		}
-		ptr = ptr->next;
+		y++;
 	}
-	return (empty_grid);
+	return (tab);
 }
-/*
-t_position			*ft_define_pos(t_position *tetrininos, int i)
-{
 
+char				**ft_fill_grid(char **tab, t_position *tetriminos, int max, int nbr_tetri, int i)
+{
+	int				x;
+	int				y;
+	char			**tmp_tab;
+
+	y = 0;
+	if (i == nbr_tetri)
+		return (tab);
+	tmp_tab = NULL;
+	while (y < max && i < nbr_tetri)
+	{
+		x = 0;
+		while (x < max && i < nbr_tetri)
+		{
+			tetriminos[i] = ft_update_pos(tetriminos[i], x, y);
+			if (ft_check(tab, tetriminos[i], max) == 1)
+				tmp_tab = ft_fill_grid(ft_fill_tab(tab, tetriminos[i], max), tetriminos, max, nbr_tetri, (i + 1));
+			if (tmp_tab)
+				return (tmp_tab);
+			tab = ft_reset_tab(tab, tetriminos[i], max);
+			x++;
+		}
+		y++;
+	}
+	return (NULL);
 }
-*/
-char				*ft_solve(t_position *tetriminos)
-{
-	char 			*empty_grid;
-	unsigned int	size;
 
-	//FOR EACH SIZE, WE WILL TRY TO FIT ALL THE PIECES IN THERE. IF WE CANNOT size++;
-	size = 4;//4 just to try for the moment
-	empty_grid = ft_empty_grid(size);
-	empty_grid = ft_grid_solver(tetriminos, empty_grid, size);
-	return (empty_grid);
+char				**ft_solve(t_position *tetriminos, int max, int nbr_tetri)
+{
+	char			**tab;
+	int				i;
+
+	i = 0;
+	while (!tab)
+	{
+		tab = ft_empty_grid(tab, max);
+		tab = ft_fill_grid(tab, tetriminos, max, nbr_tetri, i);
+		max++;
+	}
+	return (tab);
 }

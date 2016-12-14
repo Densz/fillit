@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dzheng <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: dzheng <dzheng@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/06 10:35:52 by dzheng            #+#    #+#             */
-/*   Updated: 2016/12/07 17:44:22 by dzheng           ###   ########.fr       */
+/*   Updated: 2016/12/13 11:28:41 by dzheng           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,8 @@
 typedef struct				s_position
 {
 	char					abc;
-	char					*tetrimino;
 	int						x[4];
 	int						y[4];
-	struct s_position 		*next;
 }							t_position;
 
 int                 check_c(char *str, char c);
@@ -38,6 +36,12 @@ char				*ft_split_tetri(char *str);
 char				**read_file(char *str);
 t_position			*ft_get_tetriminos(char **str);
 void				solver(void);
-char				*ft_solve(t_position *tetriminos);
-	
+char				**ft_grid_solver(t_position *tetriminos, char **empty_grid, int size);
+char				**ft_empty_grid(char **tab, int size);
+char				**ft_solve(t_position *tetriminos, int max, int nbr_tetri);
+void 				ft_printstrs(char **str);
+int					ft_count_tetri(char **str);
+int					ft_check(char **tab, t_position tetriminos, int max);
+t_position			ft_update_pos(t_position tetriminos, int x, int y);
+
 #endif
